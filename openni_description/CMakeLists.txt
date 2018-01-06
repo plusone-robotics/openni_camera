@@ -5,6 +5,10 @@ find_package(catkin REQUIRED)
 
 catkin_package()
 
-install(DIRECTORY model
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/
-)
+install(DIRECTORY model DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(DIRECTORY test  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+if (CATKIN_ENABLE_TESTING)
+  find_package(catkin REQUIRED COMPONENTS rostest)
+  add_rostest(test/sample_kobuki.test)
+endif ()
